@@ -69,6 +69,45 @@ class Grille {
 
             return str;
         }
+
+        bool EstPleine()
+        {
+            for(int i=0; i<SIZE; i++)
+            {
+                for(int j=0; j<SIZE; j++)
+                {
+                    if (grille[i][j] == " ")
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+        bool EstGagnante()
+        {
+            for(int i=0; i<SIZE; i++)
+            {
+                if (grille[i][0] == grille[i][1] && grille[i][1] == grille[i][2] && grille[i][0] != " ")
+                    return true;
+            }
+
+            for(int i=0; i<SIZE; i++)
+            {
+                if (grille[0][i] == grille[1][i] && grille[1][i] == grille[2][i] && grille[0][i] != " ")
+                    return true;
+            }
+
+            if (grille[0][0] == grille[1][1] && grille[1][1] == grille[2][2] && grille[0][0] != " ")
+                return true;
+
+            if (grille[0][2] == grille[1][1] && grille[1][1] == grille[2][0] && grille[0][2] != " ")
+                return true;
+
+            return false;
+        }
+
+
 };
 
 int main()
@@ -76,7 +115,7 @@ int main()
     Grille grille;
 
 
-    out << grille.Afficher() << std::endl;
+    cout << grille.Afficher() << std::endl;
 
     return 0;
 }
